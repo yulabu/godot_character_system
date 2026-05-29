@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b5td746shfg3y"]
+[gd_scene load_steps=12 format=3 uid="uid://b5td746shfg3y"]
 
 [ext_resource type="Script" path="res://character_system/character_controller.gd" id="1_controller"]
 [ext_resource type="Script" path="res://character_system/state_machine.gd" id="2_state_machine"]
@@ -9,6 +9,7 @@
 [ext_resource type="Script" path="res://states/skill_state.gd" id="7_skill"]
 [ext_resource type="Script" path="res://states/hit_state.gd" id="8_hit"]
 [ext_resource type="Script" path="res://states/death_state.gd" id="9_death"]
+[ext_resource type="Script" path="res://test_controls.gd" id="10_test"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
 
@@ -60,3 +61,6 @@ interruptible = false
 [node name="DeathState" type="Node" parent="Player/StateMachine"]
 script = ExtResource("9_death")
 priority = 100
+
+[node name="TestControls" type="Node" parent="."]
+script = ExtResource("10_test")
