@@ -1,6 +1,6 @@
 [gd_scene load_steps=12 format=3 uid="uid://b5td746shfg3y"]
 
-[ext_resource type="Script" path="res://character_system/character_controller.gd" id="1_controller"]
+[ext_resource type="Script" path="res://test_character_controller.gd" id="1_controller"]
 [ext_resource type="Script" path="res://character_system/state_machine.gd" id="2_state_machine"]
 [ext_resource type="Script" path="res://states/idle_state.gd" id="3_idle"]
 [ext_resource type="Script" path="res://states/move_state.gd" id="4_move"]
@@ -12,8 +12,7 @@
 [ext_resource type="Script" path="res://test_controls.gd" id="10_test"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_tlwt5"]
+size = Vector2(32, 32)
 
 [node name="World" type="Node2D"]
 
@@ -23,10 +22,12 @@ script = ExtResource("1_controller")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
 shape = SubResource("RectangleShape2D_fj7yv")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
-sprite_frames = SubResource("SpriteFrames_tlwt5")
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+[node name="TestSprite" type="ColorRect" parent="Player"]
+offset_left = -16.0
+offset_top = -16.0
+offset_right = 16.0
+offset_bottom = 16.0
+color = Color(1, 1, 1, 1)
 
 [node name="StateMachine" type="Node" parent="Player"]
 script = ExtResource("2_state_machine")
