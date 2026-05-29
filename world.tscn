@@ -1,0 +1,62 @@
+[gd_scene load_steps=11 format=3 uid="uid://b5td746shfg3y"]
+
+[ext_resource type="Script" path="res://character_system/character_controller.gd" id="1_controller"]
+[ext_resource type="Script" path="res://character_system/state_machine.gd" id="2_state_machine"]
+[ext_resource type="Script" path="res://states/idle_state.gd" id="3_idle"]
+[ext_resource type="Script" path="res://states/move_state.gd" id="4_move"]
+[ext_resource type="Script" path="res://states/dash_state.gd" id="5_dash"]
+[ext_resource type="Script" path="res://states/attack_state.gd" id="6_attack"]
+[ext_resource type="Script" path="res://states/skill_state.gd" id="7_skill"]
+[ext_resource type="Script" path="res://states/hit_state.gd" id="8_hit"]
+[ext_resource type="Script" path="res://states/death_state.gd" id="9_death"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_fj7yv"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_tlwt5"]
+
+[node name="World" type="Node2D"]
+
+[node name="Player" type="CharacterBody2D" parent="."]
+script = ExtResource("1_controller")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player"]
+shape = SubResource("RectangleShape2D_fj7yv")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Player"]
+sprite_frames = SubResource("SpriteFrames_tlwt5")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Player"]
+
+[node name="StateMachine" type="Node" parent="Player"]
+script = ExtResource("2_state_machine")
+initial_state_key = 0
+
+[node name="IdleState" type="Node" parent="Player/StateMachine"]
+script = ExtResource("3_idle")
+priority = 0
+
+[node name="MoveState" type="Node" parent="Player/StateMachine"]
+script = ExtResource("4_move")
+priority = 10
+
+[node name="DashState" type="Node" parent="Player/StateMachine"]
+script = ExtResource("5_dash")
+priority = 20
+dash_duration = 0.3
+
+[node name="AttackState" type="Node" parent="Player/StateMachine"]
+script = ExtResource("6_attack")
+priority = 30
+
+[node name="SkillState" type="Node" parent="Player/StateMachine"]
+script = ExtResource("7_skill")
+priority = 30
+
+[node name="HitState" type="Node" parent="Player/StateMachine"]
+script = ExtResource("8_hit")
+priority = 50
+interruptible = false
+
+[node name="DeathState" type="Node" parent="Player/StateMachine"]
+script = ExtResource("9_death")
+priority = 100
